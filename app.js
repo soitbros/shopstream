@@ -3,7 +3,7 @@ var mongoose    = require('mongoose');
 var bodyParser  = require('body-parser')
 var app = express();
 
-mongoose.connect('mongodb://localhost/shopstream-01');
+mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/shopstream-01');
 
 app.use(express.static('./client'));
 app.use(bodyParser.json());
@@ -18,6 +18,8 @@ var itemsRouter = require('./server/routes/api/items');
 app.use('/', indexRouter);
 app.use('/api/items', itemsRouter);
 
-app.listen(8080, function(){
-  console.log('broadcasting');
+var port = process.env.PORT || 8080;
+
+app.listen(port, function(){
+  console.log('broadcasting on ' + port);
 });
