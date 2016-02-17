@@ -7,7 +7,7 @@ var itemSchema = mongoose.Schema({
   category: { type: String, required: true },
   description: { type: String, required: true },
   rating: { type: Number },
-  sold: {type: Boolean, default: false}
+  sold: {type: Number, default: false}
 }, {timestamps: true });
 
 
